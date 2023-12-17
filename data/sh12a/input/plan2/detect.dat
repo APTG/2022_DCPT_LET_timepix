@@ -4,7 +4,7 @@ Geometry Mesh
         Name XZ_map             # Longitudinal map
         X -15.  15.   300
         Y  -1.   1.   1
-        Z  -15.25 12.25 275
+        Z  -2.25 17.5 200
 
 Geometry Mesh
         Name XY_map             # Lateral map
@@ -16,39 +16,27 @@ Geometry Mesh
         Name Z_narrow           # Narrow scoring along Z (lat. equib)
         X  -1.  1.     1
         Y  -1.  1.     1
-        Z  -15.25 12.25 275
+        Z  -2.25 17.5  200
 
 Geometry Mesh
         Name Z_wide             # wide scoring along Z (no lat. equib)
         X  -15.  15.     1
         Y  -15.  15.     1
-        Z  -15.25 12.25 275
+        Z  -2.25 17.5    200
+
 
 Geometry Mesh
-        Name TARGET_pos2a         # Sensitive volume (target)
+        Name TARGET_pos2_L         # Sensitive volume (target)
         X -13.0  -11.0  20
         Y -0.5   0.5     1
         Z -0.1   0.1     1
 
-Geometry Mesh
-        Name TARGET_pos3a         # Sensitive volume (target)
-        X -7.0  -5.0    20
-        Y -0.5   0.5     1
-        Z -0.1   0.1     1
-
-
 # the opposite side is disabled as long as setup is symmetric
 # Geometry Mesh
-#         Name TARGET_pos2b         # Sensitive volume (target)
+#         Name TARGET_pos2_R         # Sensitive volume (target)
 #        X 11.0   13.0   20
 #        Y -0.5   0.5     1
 #        Z -0.1   0.1     1
-# Geometry Mesh
-#        Name TARGET_pos3b         # Sensitive volume (target)
-#        X  5.0   7.0    20
-#        Y -0.5   0.5     1
-#        Z -0.1   0.1     1
-
 
 # ------- Define a few useful filters ----------
 Filter
@@ -123,9 +111,10 @@ Output
         Quantity TQEFF Primary
         Quantity TQEFF Protons
 
+
 Output
-        Filename NB_target_pos2a.bdo
-        Geo TARGET_pos2a
+        Filename NB_target_pos2_L.bdo
+        Geo TARGET_pos2_L
         Quantity FLUENCE                        # __p1
         Quantity DOSE                           # __p2
         Quantity DLET                           # __p3
@@ -143,36 +132,7 @@ Output
 
 Output
         Filename NB_target_pos2a_water.bdo
-        Geo TARGET_pos2a
-        Quantity DOSE in_Water                  # __p1
-        Quantity DLET in_Water                  # __p2
-        Quantity DLET Primary in_Water
-        Quantity DLET Protons in_Water
-        Quantity TLET in_Water                  # __p5
-        Quantity TLET Primary in_Water
-        Quantity TLET Protons in_Water
-
-Output
-        Filename NB_target_pos3a.bdo
-        Geo TARGET_pos3a
-        Quantity FLUENCE                        # __p1
-        Quantity DOSE                           # __p2
-        Quantity DLET                           # __p3
-        Quantity DLET Primary
-        Quantity DLET Protons
-        Quantity TLET                           # __p6
-        Quantity TLET Primary
-        Quantity TLET Protons
-        Quantity DQEFF                          # __p9
-        Quantity DQEFF Primary
-        Quantity DQEFF Protons
-        Quantity TQEFF                          # __p12
-        Quantity TQEFF Primary
-        Quantity TQEFF Protons
-
-Output
-        Filename NB_target_pos3a_water.bdo
-        Geo TARGET_pos3a
+        Geo TARGET_pos2_L
         Quantity DOSE in_Water                  # __p1
         Quantity DLET in_Water                  # __p2
         Quantity DLET Primary in_Water
