@@ -11,7 +11,7 @@ bplot="NB_Z_narrow_dose NB_Z_narrow_dose_water NB_Z_narrow_LET NB_Z_narrow_LET_w
 # basenames for images (2-d and 1-d)
 bimg="NB_XY NB_XZ ${bplot}"
 # basenames for text
-btxt="NB_target_pos2a NB_target_pos2a_water NB_target_pos3a NB_target_pos3a_water"
+btxt="NB_target_pos2_L NB_target_pos2_L_water NB_target_pos3_L NB_target_pos3_L_water"
 
 td=`pwd`           # this directory where command was started from
 
@@ -31,8 +31,10 @@ do
     # generate PNG images and copy into results dir
     for b in $bimg
     do
-       echo  \ \ convert "${b}*bdo" to image files
-       convertmc image --many "${b}*bdo"
+        if [ ${b}*bdo ]; then
+            echo  \ \ convert "${b}*bdo" to image files
+            convertmc image --many "${b}*bdo"
+        fi
     done
     cd $td
     cp -v $od/NB*.png $rd
@@ -41,8 +43,10 @@ do
     # generate plotdata (.dat) and copy into results dir
     for b in $bplot
     do
+        if [ ${b}*bdo ]; then
             echo \ \ convert "${b}*bdo" to plotdata files
             convertmc plotdata --many "${b}*bdo"
+        fi
     done
     cd $td
     cp -v $od/NB*.dat $rd
@@ -50,8 +54,10 @@ do
     cd $od    # generate text results for VOIs (.txt) and copy into results dir
     for b in $btxt
     do
-       echo \ \ convert "${b}*bdo" to text files
-       convertmc txt --many "${b}*bdo"
+        if [ ${b}*bdo ]; then
+            echo \ \ convert "${b}*bdo" to text files
+            convertmc txt --many "${b}*bdo"
+        fi
     done
     cd $td      # change back into ./
     cp -v $od/NB*.txt $rd
