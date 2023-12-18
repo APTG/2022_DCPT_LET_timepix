@@ -18,48 +18,57 @@ td=`pwd`           # this directory where command was started from
 for dir in input/plan*
 do
     echo
-    ed=`ls -1 -d ${dir}/run_* | tail -1`  # extract from latest run directory only
+    ed=$(ls -1 -d "${dir}"/run_* | tail -1)  # extract from latest run directory only
     od=${ed}/output   # output directory
-    rdd=`basename ${dir}`
+    rdd=$(basename "${dir}")
     rd=results/${rdd}  # result directory
 
-    mkdir -p ${rd}
+    mkdir -p "${rd}"
 
-    echo $od
-    cd $od  # change into every plan*/run_*/output directory
+    echo "${od}"
+    cd "${od}" || exit  # change into every plan*/run_*/output directory
 
     # generate PNG images and copy into results dir
     for b in $bimg
     do
-        if [ ${b}*bdo ]; then
-            echo  \ \ convert "${b}*bdo" to image files
-            convertmc image --many "${b}*bdo"
-        fi
+        for file in ${b}*.bdo
+        do
+            if [ -e "${file}" ]; then
+                echo  "  Convert ${file} to image files"
+                convertmc image --many "${file}"
+            fi
+        done
     done
-    cd $td
-    cp -v $od/NB*.png $rd
+    cd "${td}" || exit
+    cp -v "${od}"/NB*.png "${rd}"
 
     cd $od
     # generate plotdata (.dat) and copy into results dir
     for b in $bplot
     do
-        if [ ${b}*bdo ]; then
-            echo \ \ convert "${b}*bdo" to plotdata files
-            convertmc plotdata --many "${b}*bdo"
-        fi
+        for file in ${b}*.bdo
+        do
+            if [ -e "${file}" ]; then
+                echo  "  Convert ${file} to plotdata files"
+                convertmc plotdata --many "${file}"
+            fi
+        done
     done
-    cd $td
-    cp -v $od/NB*.dat $rd
+    cd "${td}" || exit
+    cp -v "${od}"/NB*.dat "${rd}"
 
     cd $od    # generate text results for VOIs (.txt) and copy into results dir
     for b in $btxt
     do
-        if [ ${b}*bdo ]; then
-            echo \ \ convert "${b}*bdo" to text files
-            convertmc txt --many "${b}*bdo"
-        fi
+        for file in ${b}*.bdo
+        do
+            if [ -e "${file}" ]; then
+                echo  "  Convert ${file} to text files"
+                convertmc txt --many "${file}"
+            fi
+        done
     done
-    cd $td      # change back into ./
-    cp -v $od/NB*.txt $rd
+    cd "${td}" || exit
+    cp -v "${od}"/NB*.txt "${rd}"
 
 done
