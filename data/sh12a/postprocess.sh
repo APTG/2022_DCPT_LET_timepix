@@ -31,10 +31,10 @@ do
     # generate PNG images and copy into results dir
     for b in $bimg
     do
-        files=(${b}*.bdo)
-        if [ -e "${files[0]}" ]; then
-            echo "  Convert ${b}*.bdo to image files"
-            convertmc image --many "${b}"*.bdo
+        files_pattern="${b}"*.bdo
+        if compgen -G "${files_pattern}" > /dev/null; then
+            echo "  Convert ${files_pattern} to image files"
+            convertmc image --many "${files_pattern}"
         fi
     done
     cd "${td}" || exit
@@ -44,8 +44,8 @@ do
     # generate plotdata (.dat) and copy into results dir
     for b in $bplot
     do
-        files=(${b}*.bdo)
-        if [ -e "${files[0]}" ]; then
+        files_pattern="${b}"*.bdo
+        if compgen -G "${files_pattern}" > /dev/null; then
             echo "  Convert ${b}*.bdo to plotdata files"
             convertmc plotdata --many "${b}"*.bdo
         fi
@@ -56,8 +56,8 @@ do
     cd $od    # generate text results for VOIs (.txt) and copy into results dir
     for b in $btxt
     do
-        files=(${b}*.bdo)
-        if [ -e "${files[0]}" ]; then
+        files_pattern="${b}"*.bdo
+        if compgen -G "${files_pattern}" > /dev/null; then
             echo "  Convert ${b}*.bdo to text files"
             convertmc txt --many "${b}"*.bdo
         fi
