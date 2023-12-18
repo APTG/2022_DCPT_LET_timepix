@@ -47,7 +47,7 @@ do
         files_pattern="${b}"*.bdo
         if compgen -G "${files_pattern}" > /dev/null; then
             echo "  Convert ${files_pattern} to plotdata files"
-            convertmc plotdata --many ${files_pattern}
+            convertmc plotdata --many "${files_pattern}"
         fi
     done
     cd "${td}" || exit
@@ -59,7 +59,7 @@ do
         files_pattern="${b}"*.bdo
         if compgen -G "${files_pattern}" > /dev/null; then
             echo "  Convert ${files_pattern} to text files"
-            convertmc txt --many ${files_pattern}
+            convertmc txt --many "${files_pattern}"
         fi
     done
     cd "${td}" || exit
