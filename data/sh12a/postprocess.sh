@@ -31,13 +31,11 @@ do
     # generate PNG images and copy into results dir
     for b in $bimg
     do
-        for file in ${b}*.bdo
-        do
-            if [ -e "${file}" ]; then
-                echo  "  Convert ${file} to image files"
-                convertmc image --many "${file}"
-            fi
-        done
+        files=(${b}*.bdo)
+        if [ -e "${files[0]}" ]; then
+            echo "  Convert ${b}*.bdo to image files"
+            convertmc image --many "${b}"*.bdo
+        fi
     done
     cd "${td}" || exit
     cp -v "${od}"/NB*.png "${rd}"
@@ -46,13 +44,11 @@ do
     # generate plotdata (.dat) and copy into results dir
     for b in $bplot
     do
-        for file in ${b}*.bdo
-        do
-            if [ -e "${file}" ]; then
-                echo  "  Convert ${file} to plotdata files"
-                convertmc plotdata --many "${file}"
-            fi
-        done
+        files=(${b}*.bdo)
+        if [ -e "${files[0]}" ]; then
+            echo "  Convert ${b}*.bdo to plotdata files"
+            convertmc plotdata --many "${b}"*.bdo
+        fi
     done
     cd "${td}" || exit
     cp -v "${od}"/NB*.dat "${rd}"
@@ -60,13 +56,11 @@ do
     cd $od    # generate text results for VOIs (.txt) and copy into results dir
     for b in $btxt
     do
-        for file in ${b}*.bdo
-        do
-            if [ -e "${file}" ]; then
-                echo  "  Convert ${file} to text files"
-                convertmc txt --many "${file}"
-            fi
-        done
+        files=(${b}*.bdo)
+        if [ -e "${files[0]}" ]; then
+            echo "  Convert ${b}*.bdo to text files"
+            convertmc txt --many "${b}"*.bdo
+        fi
     done
     cd "${td}" || exit
     cp -v "${od}"/NB*.txt "${rd}"
