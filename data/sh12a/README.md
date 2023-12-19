@@ -23,7 +23,7 @@ using `ares.cyfronet.pl`:
 On login node and from the same directory as this README file run following command:
 ```bash
 $ module load mcpartools shieldhit
-$ generatemc -j100 -p5000000 -s "[ -A plgccbmc12-cpu -p plgrid --time=1:59:00]" -e "[ -t 01:55:00]" input/planX/
+$ generatemc -j200 -p5000000 -s "[ -A plgccbmc12-cpu -p plgrid --time=1:59:00]" -e "[ -t 01:55:00]" input/planX/
 $ ./input/planX/run......./submit.sh
 ```
 and do this for every plan.
