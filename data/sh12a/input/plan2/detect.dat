@@ -131,7 +131,7 @@ Output
         Quantity TQEFF Protons
 
 Output
-        Filename NB_target_pos2a_water.bdo
+        Filename NB_target_pos2_L_water.bdo
         Geo TARGET_pos2_L
         Quantity DOSE in_Water                  # __p1
         Quantity DLET in_Water                  # __p2
