@@ -26,14 +26,14 @@ Geometry Mesh
 
 Geometry Mesh
         Name TARGET_pos2_L         # Sensitive volume (target)
-        X -13.0  -11.0  10
+        X -13.0  -11.0   1
         Y -0.5   0.5     1
         Z -0.1   0.1     1
 
 # the opposite side is disabled as long as setup is symmetric
 # Geometry Mesh
 #         Name TARGET_pos2_R         # Sensitive volume (target)
-#        X 11.0   13.0   10
+#        X 11.0   13.0    1
 #        Y -0.5   0.5     1
 #        Z -0.1   0.1     1
 
